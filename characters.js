@@ -46,7 +46,7 @@ function character(x, y) {
   ellipse(x + 292, y + 299, 5, 7);
 }
 
-function vpravo(x, y) {
+function toRight(x, y) {
   fill(237, 201, 174);
   ellipse(x + 450, y + 300, 33, 45);
 
