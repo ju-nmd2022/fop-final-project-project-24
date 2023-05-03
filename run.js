@@ -1,17 +1,17 @@
-// import { Game } from "./game";
+import { Game } from "./TheGame";
 
-// function setup() {
-//   createCanvas(3024, 1964);
-// }
+function setup() {
+  createCanvas(700, 700);
+}
 
-// let game = new Game();
-// let gameRunning = true;
+let game = new Game();
+let gameRunning = true;
 
-// function draw() {
-//   if (gameRunning === false) {
-//     return;
-//   }
-//   clear();
-//   //   drawObstacleOne(180, 0);
-//   gameRunning = game.run();
-// }
+function draw() {
+  //   if (gameRunning === false) {
+  //     return;
+  //   }
+  clear();
+  //   //   drawObstacleOne(180, 0);
+  gameRunning = game.run();
+}
