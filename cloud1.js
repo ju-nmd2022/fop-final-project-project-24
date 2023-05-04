@@ -2,21 +2,22 @@ export class Cloud1 {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.obstacleVelocity = 3;
+    this.speed = 4;
+    this.direction = 1;
+    // později přidat i width
   }
 
-  draw() {
+  draw(x, y) {
     strokeWeight(20);
     stroke("#18d4eb");
-    fill(24, 212, 235);
-    line(this.x + 100, this.y + 100, this.x + 220, this.y + 100);
-    line(this.x + 173, this.y + 100, this.x + 173, this.y + 120);
-    line(this.x + 123, this.y + 125, this.x + 200, this.y + 125);
+    fill(255, 0, 0);
+    line(this.x + 36, this.y + 205, this.x + 120, this.y + 205);
+    line(this.x + 51, this.y + 190, this.x + 51, this.y + 190);
+    line(this.x, this.y + 180, this.x + 75, this.y + 180);
 
-    //tady pak dát hýbání se mraků
+    this.x = this.x + this.speed * this.direction;
+    if (this.x >= 900 || this.x <= -1) {
+      this.direction = -this.direction;
+    }
   }
 }
-
-let cloud1 = new Cloud1(200, 100);
-
-cloud1.draw();

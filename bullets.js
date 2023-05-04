@@ -13,7 +13,7 @@ export class Bullet {
     push();
     scale(0.5);
     noStroke();
-    fill('#ff00ff');
+    fill("#ff00ff");
     ellipse(this.x, this.y, 17, 17);
     pop();
   }
