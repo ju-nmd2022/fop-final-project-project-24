@@ -9,8 +9,8 @@ export class Cloud1 {
 
   draw(x, y) {
     strokeWeight(20);
-    stroke("#18d4eb");
-    fill(255, 0, 0);
+    //čtvrý parametr je potom opacity
+    stroke(24, 212, 235);
     line(this.x + 36, this.y + 205, this.x + 120, this.y + 205);
     line(this.x + 51, this.y + 190, this.x + 51, this.y + 190);
     line(this.x, this.y + 180, this.x + 75, this.y + 180);

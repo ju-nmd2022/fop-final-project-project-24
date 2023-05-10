@@ -5,9 +5,6 @@ import { Character } from "./character";
 import { Bullet } from "./bullets";
 import { Flash } from "./flash";
 
-let a = 100;
-let b = 100;
-
 let gameIsOn = true;
 
 export class Game {
@@ -31,18 +28,19 @@ export class Game {
     this.bullets = [];
   }
 
+  //tady všechno co se hýbe
   run() {
     background(this.bg);
 
     // moving the character
     if (keyIsDown(39)) {
       this.character.x = this.character.x + this.character.speed;
-      this.character.toRight(this.character.x - 200, this.character.y + 330);
+      this.character.toRight(this.character.x, this.character.y);
     } else if (keyIsDown(37)) {
       this.character.x = this.character.x - this.character.speed;
-      this.character.toLeft(this.character.x - 300, this.character.y + 330);
+      this.character.toLeft(this.character.x, this.character.y);
     } else {
-      this.character.draw(this.character.x, this.character.y + 330);
+      this.character.draw(this.character.x, this.character.y);
     }
 
     // bullets
@@ -52,11 +50,9 @@ export class Game {
     }
 
     if (key === " " || key === "Spacebar") {
-      this.bullets.push(new Bullet(a + 292, b + 650));
-    }
-    if (keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW) {
-      //this line messes it up! How to edit?
-      this.bullets.speed = 5;
+      this.bullets.push(
+        new Bullet(this.character.x + 292, this.character.y + 400)
+      );
     }
 
     //flashes
