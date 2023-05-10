@@ -7,6 +7,7 @@ export class Character {
   draw(x, y) {
     push();
     scale(0.5);
+    //tady tohle je barvička panáčka (i v right a left) - vytvořit this.colour?
     fill(237, 201, 174);
     noStroke();
     ellipse(this.x + 292, this.y + 300, 37, 45);
@@ -62,88 +63,88 @@ export class Character {
     scale(0.5);
     noStroke();
     fill(237, 201, 174);
-    ellipse(this.x + 450, this.y + 300, 33, 45);
+    ellipse(this.x + 290, this.y + 300, 33, 45);
 
-    rect(this.x + 445, this.y + 315, 12, 20);
+    rect(this.x + 285, this.y + 315, 12, 20);
     strokeWeight(37);
     stroke(237, 201, 174);
-    line(this.x + 451, this.y + 347, this.x + 451, this.y + 410);
+    line(this.x + 291, this.y + 347, this.x + 291, this.y + 410);
 
     strokeWeight(20);
-    rect(this.x + 449, this.y + 413, 1, 75);
-    line(this.x + 459, this.y + 417, this.x + 500, this.y + 482);
+    rect(this.x + 289, this.y + 413, 1, 75);
+    line(this.x + 309, this.y + 417, this.x + 340, this.y + 482);
     strokeWeight(18);
-    line(this.x + 500, this.y + 485, this.x + 510, this.y + 480);
-    line(this.x + 448, this.y + 495, this.x + 467, this.y + 495);
-    line(this.x + 449, this.y + 393, this.x + 508, this.y + 346);
+    line(this.x + 340, this.y + 485, this.x + 350, this.y + 480);
+    line(this.x + 288, this.y + 495, this.x + 307, this.y + 495);
+    line(this.x + 289, this.y + 393, this.x + 348, this.y + 346);
 
     noStroke();
     fill("#1f456e");
-    ellipse(this.x + 450, this.y + 299, 27, 37);
+    ellipse(this.x + 290, this.y + 299, 27, 37);
     fill(255, 255, 255);
-    ellipse(this.x + 450, this.y + 299, 22, 30);
+    ellipse(this.x + 290, this.y + 299, 22, 30);
     fill("#3944bc");
-    ellipse(this.x + 450, this.y + 299, 20, 27);
+    ellipse(this.x + 290, this.y + 299, 20, 27);
     fill("#281e5d");
-    ellipse(this.x + 450, this.y + 299, 18, 20);
+    ellipse(this.x + 290, this.y + 299, 18, 20);
     fill("#63c5da");
-    ellipse(this.x + 450, this.y + 299, 12, 15);
+    ellipse(this.x + 290, this.y + 299, 12, 15);
     fill("#151e3d");
-    ellipse(this.x + 450, this.y + 299, 10, 12);
+    ellipse(this.x + 290, this.y + 299, 10, 12);
     fill(255, 255, 255);
-    ellipse(this.x + 450, this.y + 299, 7, 10);
+    ellipse(this.x + 290, this.y + 299, 7, 10);
     fill("#2c3e4c");
-    ellipse(this.x + 450, this.y + 299, 5, 7);
+    ellipse(this.x + 290, this.y + 299, 5, 7);
 
     fill(0, 0, 0);
-    rect(this.x + 500, this.y + 335, 10, 20);
-    rect(this.x + 500, this.y + 335, 25, 10);
+    rect(this.x + 340, this.y + 335, 10, 20);
+    rect(this.x + 340, this.y + 335, 25, 10);
     pop();
   }
 
   //   keyIsDown(37)
 
-  toLeft() {
+  toLeft(x, y) {
     push();
     scale(0.5);
     stroke(237, 201, 174);
     fill(237, 201, 174);
     noStroke();
-    ellipse(this.x + 640, this.y + 300, 33, 45);
+    ellipse(this.x + 290, this.y + 300, 33, 45);
 
-    rect(this.x + 635, this.y + 315, 12, 20);
+    rect(this.x + 285, this.y + 315, 12, 20);
     strokeWeight(37);
     stroke(237, 201, 174);
-    line(this.x + 640, this.y + 347, this.x + 640, this.y + 410);
+    line(this.x + 290, this.y + 347, this.x + 290, this.y + 410);
 
     strokeWeight(20);
-    rect(this.x + 640, this.y + 413, 1, 75);
-    line(this.x + 633, this.y + 411, this.x + 595, this.y + 470);
+    rect(this.x + 290, this.y + 413, 1, 75);
+    line(this.x + 283, this.y + 411, this.x + 245, this.y + 470);
     strokeWeight(18);
-    line(this.x + 642, this.y + 496, this.x + 618, this.y + 497);
-    line(this.x + 592, this.y + 470, this.x + 580, this.y + 459);
-    line(this.x + 639, this.y + 387, this.x + 579, this.y + 347);
+    line(this.x + 292, this.y + 496, this.x + 268, this.y + 497);
+    line(this.x + 242, this.y + 470, this.x + 230, this.y + 459);
+    line(this.x + 289, this.y + 387, this.x + 229, this.y + 347);
 
     noStroke();
     fill("#1f456e");
-    ellipse(this.x + 640, this.y + 299, 27, 37);
+    ellipse(this.x + 290, this.y + 299, 27, 37);
     fill(255, 255, 255);
-    ellipse(this.x + 640, this.y + 299, 22, 30);
+    ellipse(this.x + 290, this.y + 299, 22, 30);
     fill("#3944bc");
-    ellipse(this.x + 640, this.y + 299, 20, 27);
+    ellipse(this.x + 290, this.y + 299, 20, 27);
     fill("#281e5d");
-    ellipse(this.x + 640, this.y + 299, 18, 20);
+    ellipse(this.x + 290, this.y + 299, 18, 20);
     fill("#63c5da");
-    ellipse(this.x + 640, this.y + 299, 12, 15);
+    ellipse(this.x + 290, this.y + 299, 12, 15);
     fill("#151e3d");
-    ellipse(this.x + 640, this.y + 299, 10, 12);
+    ellipse(this.x + 290, this.y + 299, 10, 12);
     fill(255, 255, 255);
-    ellipse(this.x + 640, this.y + 299, 7, 10);
+    ellipse(this.x + 290, this.y + 299, 7, 10);
     fill("#2c3e4c");
-    ellipse(this.x + 640, this.y + 299, 5, 7);
+    ellipse(this.x + 290, this.y + 299, 5, 7);
     fill(0, 0, 0);
-    rect(this.x + 579, this.y + 335, 10, 20);
-    rect(this.x + 567, this.y + 335, 20, 10);
+    rect(this.x + 229, this.y + 335, 10, 20);
+    rect(this.x + 217, this.y + 335, 20, 10);
     pop();
   }
 }
