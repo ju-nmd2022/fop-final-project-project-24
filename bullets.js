@@ -7,7 +7,7 @@ export class Bullet {
 
   update() {
     this.y -= this.speed;
-  }
+  } 
 
   show() {
     push();

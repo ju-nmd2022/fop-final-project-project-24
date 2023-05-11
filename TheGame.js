@@ -49,11 +49,14 @@ export class Game {
       this.bullets[i].show();
     }
 
-    if (key === " " || key === "Spacebar") {
-      this.bullets.push(
-        new Bullet(this.character.x + 292, this.character.y + 400)
-      );
+    if (keyIsDown(32) && !this.spacePressed) {
+      this.bullets.push(new Bullet(this.character.x + 290, this.character.y + 350));
+      this.spacePressed = true;
+    } else if (!keyIsDown(32)) {
+      this.spacePressed = false;
     }
+
+
 
     //flashes
     //frameCount clears the canvas - chatGPT adviced that
