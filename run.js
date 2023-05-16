@@ -10,8 +10,8 @@ let gameRunning = true;
 function draw() {
   //   if (gameRunning === false) {
   //     return;
-  //   } 
+  //   }
   clear();
-  //   //   drawObstacleOne(180, 0) 
+  //   //   drawObstacleOne(180, 0)
   gameRunning = game.run();
-} 
+}

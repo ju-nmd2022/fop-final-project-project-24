@@ -2,12 +2,14 @@ export class Bullet {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.speed = 10;
+    this.speed = 15;
+    this.acc = 0.2;
   }
 
   update() {
     this.y -= this.speed;
-  } 
+    this.speed += this.acc;
+  }
 
   show() {
     push();

@@ -21,11 +21,16 @@ export class Game {
 
     this.bg = loadImage("images/gameBackground.png");
     this.randomNumber = Math.floor(Math.random() * 4); //between 0 and 3
+    this.endGame = false;
   }
 
   setUp() {
     this.flashes = [];
     this.bullets = [];
+    this.endGame = false;
+  }
+  changeToOriginalColor() {
+    this.character.color = "#EDC9AE";
   }
 
   //tady všechno co se hýbe
@@ -50,33 +55,30 @@ export class Game {
     }
 
     if (keyIsDown(32) && !this.spacePressed) {
-      this.bullets.push(new Bullet(this.character.x + 290, this.character.y + 350));
+      this.bullets.push(
+        new Bullet(this.character.x + 290, this.character.y + 350)
+      );
       this.spacePressed = true;
     } else if (!keyIsDown(32)) {
       this.spacePressed = false;
     }
 
-
-
     //flashes
     //frameCount clears the canvas - chatGPT adviced that
     //flash and cloud
     if (this.randomNumber > 1 && frameCount % 30 === 0) {
-      console.log("flash");
       const newFlash = new Flash(this.cloud.x + 30, this.cloud.y - 270);
       this.flashes.push(newFlash);
     }
 
     //flash1 and cloud1
     if (this.randomNumber > 0 && frameCount % 60 === 0) {
-      console.log("flash");
       const newFlash = new Flash(this.cloud1.x - 60, this.cloud1.y - 150);
       this.flashes.push(newFlash);
     }
 
     //flash2 and cloud2
     if (this.randomNumber > 0 && frameCount % 45 === 0) {
-      console.log("flash");
       const newFlash = new Flash(this.cloud2.x + 200, this.cloud2.y - 200);
       this.flashes.push(newFlash);
     }
@@ -100,21 +102,30 @@ export class Game {
     this.cloud1.draw();
     this.cloud2.draw();
 
-    // }
-    // for (let i = 0; i < this.flashes.length; i++) {
-    //   let currentFlash = this.flashes[i];
-    //   currentFlash.draw();
-    //   currentFlash.update();
-    // }
+    for (let i = 0; i < this.flashes.length; i++) {
+      //detecting collisions
+      if (typeof this.flashes[i].detectIntersection == "function") {
+        //here goes the evaluated true/false from detectIntersection (each of the objects/obstacles has it implemented in their codes)
+        let objectCollision = this.flashes[i].detectIntersection(
+          this.character.collisionInfo()
+        );
+        if (objectCollision === true) {
+          this.character.color = "#FF0000";
+          //chat GPT helped edit setTimeout and added the arrow function -  to retain the proper 'this' context
+          setTimeout(() => {
+            this.changeToOriginalColor();
+          }, 500);
+          // this.endGame = true;
+        }
+      }
+    }
 
-    // if (this.randomNumber < 3) {
-    //   this.flash1.draw();
-    // }
-
-    // if (this.randomNumber > 3 && this.randomNumber < 7) {
-    //   this.flash2.draw();
-    // }
-
-    //tady jsem pro teď skončila
+    if (
+      // this.character.x <= 200 || //má být 200
+      // this.character.x >= 800 ||
+      this.endGame === true
+    ) {
+      console.log("gameOver");
+    }
   }
 }
