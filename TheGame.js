@@ -55,7 +55,9 @@ export class Game {
     }
 
     if (keyIsDown(32) && !this.spacePressed) {
-      this.bullets.push(new Bullet(this.character.x + 20, this.character.y));
+      this.bullets.push(
+        new Bullet(this.character.x + 95, this.character.y + 120)
+      );
       this.spacePressed = true;
     } else if (!keyIsDown(32)) {
       this.spacePressed = false;
@@ -119,8 +121,8 @@ export class Game {
     }
 
     if (
-      // this.character.x <= 200 || //má být 200
-      // this.character.x >= 800 ||
+      this.character.x <= 200 || //má být 200
+      this.character.x >= 800 ||
       this.endGame === true
     ) {
       console.log("gameOver");

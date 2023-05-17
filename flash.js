@@ -4,8 +4,8 @@ export class Flash {
     this.y = y;
     this.speed = 10;
     this.acceleration = 0.4;
-    this.width = 35;
-    this.height = 75;
+    this.width = 31;
+    this.height = 70;
   }
 
   detectIntersection(characterCoordinates) {
@@ -17,9 +17,9 @@ export class Flash {
 
       //following 4 lines - chat GPT
       characterCoordinates.x < this.x + this.width &&
-      characterCoordinates.x + 40 > this.x && //40 je šířka characteru myslím
+      characterCoordinates.x + 45 > this.x && //40 je šířka characteru myslím
       characterCoordinates.y < this.y + this.height &&
-      characterCoordinates.y + 115 > this.y //115 je výška characteru
+      characterCoordinates.y + 145 > this.y //115 je výška characteru
     ) {
       return true;
     }
@@ -28,21 +28,21 @@ export class Flash {
 
   draw(x, y) {
     noStroke();
-    fill(234, 198, 80);
-    rect(this.x, this.y, this.width, this.height);
+    // fill(234, 198, 80);
+    // rect(this.x + 20, this.y + 17, this.width, this.height);
     fill("#eefc55");
 
     beginShape();
-    vertex(this.x + 153, this.y + 314);
-    vertex(this.x + 135, this.y + 350);
-    vertex(this.x + 120, this.y + 350);
+    vertex(this.x + 53, this.y + 14);
+    vertex(this.x + 35, this.y + 50);
+    vertex(this.x + 20, this.y + 50);
     endShape();
-    rect(this.x + 120, this.y + 350, 25, 9);
+    rect(this.x + 20, this.y + 50, 25, 9);
 
     beginShape();
-    vertex(this.x + 145, this.y + 359);
-    vertex(this.x + 124, this.y + 390);
-    vertex(this.x + 133, this.y + 359);
+    vertex(this.x + 45, this.y + 59);
+    vertex(this.x + 24, this.y + 90);
+    vertex(this.x + 33, this.y + 59);
     endShape();
   }
 

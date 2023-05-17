@@ -4,6 +4,8 @@ export class Bullet {
     this.y = y;
     this.speed = 15;
     this.acc = 0.2;
+    this.width = 10;
+    this.height = 10;
   }
 
   update() {
@@ -12,11 +14,8 @@ export class Bullet {
   }
 
   show() {
-    push();
-    scale(0.5);
     noStroke();
     fill("#ff00ff");
-    ellipse(this.x, this.y, 17, 17);
-    pop();
+    ellipse(this.x, this.y, this.width, this.height);
   }
 }
