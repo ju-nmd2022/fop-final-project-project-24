@@ -1,7 +1,7 @@
 import { Game } from "./TheGame";
 
 function setup() {
-  createCanvas(1000, 700);
+  createCanvas(1000, 900);
 }
 
 let game = new Game();

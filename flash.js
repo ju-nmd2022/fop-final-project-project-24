@@ -27,21 +27,23 @@ export class Flash {
   }
 
   draw(x, y) {
-    fill("#eefc55");
     noStroke();
+    fill(234, 198, 80);
     rect(this.x, this.y, this.width, this.height);
-    // beginShape();
-    // vertex(this.x + 153, this.y + 314);
-    // vertex(this.x + 135, this.y + 350);
-    // vertex(this.x + 120, this.y + 350);
-    // endShape();
-    // rect(this.x + 120, this.y + 350, 25, 9);
+    fill("#eefc55");
 
-    // beginShape();
-    // vertex(this.x + 145, this.y + 359);
-    // vertex(this.x + 124, this.y + 390);
-    // vertex(this.x + 133, this.y + 359);
-    // endShape();
+    beginShape();
+    vertex(this.x + 153, this.y + 314);
+    vertex(this.x + 135, this.y + 350);
+    vertex(this.x + 120, this.y + 350);
+    endShape();
+    rect(this.x + 120, this.y + 350, 25, 9);
+
+    beginShape();
+    vertex(this.x + 145, this.y + 359);
+    vertex(this.x + 124, this.y + 390);
+    vertex(this.x + 133, this.y + 359);
+    endShape();
   }
 
   update() {

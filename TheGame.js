@@ -55,9 +55,7 @@ export class Game {
     }
 
     if (keyIsDown(32) && !this.spacePressed) {
-      this.bullets.push(
-        new Bullet(this.character.x + 290, this.character.y + 350)
-      );
+      this.bullets.push(new Bullet(this.character.x + 20, this.character.y));
       this.spacePressed = true;
     } else if (!keyIsDown(32)) {
       this.spacePressed = false;
