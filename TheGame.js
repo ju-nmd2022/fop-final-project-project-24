@@ -18,7 +18,6 @@ export class Game {
     this.character = new Character(450, 430); //450, 430
     // //flash for cloud
     // this.flash = new Flash(this.cloud.x, this.cloud.y);
-
     this.bg = loadImage("images/gameBackground.png");
     this.randomNumber = Math.floor(Math.random() * 4); //between 0 and 3
     this.endGame = false;
