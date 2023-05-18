@@ -4,13 +4,24 @@ export class Cloud1 {
     this.y = y;
     this.speed = 4;
     this.direction = 1;
-    // později přidat i width
+    this.width = 140;
+    this.height = 45;
+    this.color = "#18D4EB";
+  }
+
+  collisionInfo() {
+    return {
+      x: this.x - 10,
+      y: this.y + 170,
+      width: this.width,
+      height: this.height,
+    };
   }
 
   draw(x, y) {
     strokeWeight(20);
     //čtvrý parametr je potom opacity
-    stroke(24, 212, 235);
+    stroke(this.color);
     line(this.x + 36, this.y + 205, this.x + 120, this.y + 205);
     line(this.x + 51, this.y + 190, this.x + 51, this.y + 190);
     line(this.x, this.y + 180, this.x + 75, this.y + 180);
