@@ -6,6 +6,7 @@ export class Character {
     this.color = "#EDC9AE";
     this.height = 145;
     this.width = 45;
+    this.lives = 3;
   }
 
   collisionInfo() {
