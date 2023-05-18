@@ -4,14 +4,8 @@ import { Cloud2 } from "./cloud2";
 import { Character } from "./character";
 import { Bullet } from "./bullets";
 import { Flash } from "./flash";
-import { Heart } from "./heart";
 
 let gameIsOn = true;
-let heartImage;
-
-function preload() {
-  heartImage = loadImage("images/heart.jpg");
-}
 
 export class Game {
   constructor() {
@@ -27,40 +21,12 @@ export class Game {
     this.bg = loadImage("images/gameBackground.png");
     this.randomNumber = Math.floor(Math.random() * 4); //between 0 and 3
     this.endGame = false;
-
-    this.hearts = [];
-    this.maxHearts = 3;
-
-    // Create new heart instances and add them to the hearts array
-    
-    
   }
-  createHearts() {
-    const heartPositions = [
-      { x: 100, y: 100 },
-      { x: 200, y: 100 },
-      { x: 300, y: 100 },
-    ];
-
-    for (let i = 0; i < this.maxHearts; i++) {
-      const { x, y } = heartPositions[i];
-      const heart = new Heart(x, y);
-      this.hearts.push(heart);
-    }
-  }
-  
-  drawHearts() {
-    for (let i = 0; i < this.hearts.length; i++) {
-      this.hearts[i].display();
-    }
-  }
-
 
   setUp() {
     this.flashes = [];
     this.bullets = [];
     this.endGame = false;
-    this.createHearts={};
   }
   changeToOriginalColor() {
     this.character.color = "#EDC9AE";
@@ -77,7 +43,6 @@ export class Game {
 
   //tady všechno co se hýbe
   run() {
-    this.drawHearts();
     background(this.bg);
 
     // moving the character
@@ -222,9 +187,5 @@ export class Game {
     ) {
       console.log("gameOver");
     }
-    
   }
 }
-
-
-
