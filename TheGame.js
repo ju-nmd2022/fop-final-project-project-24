@@ -76,19 +76,19 @@ export class Game {
     //frameCount clears the canvas - chatGPT adviced that
     //flash and cloud
     if (this.randomNumber > 1 && frameCount % 30 === 0) {
-      const newFlash = new Flash(this.cloud.x + 30, this.cloud.y - 270);
+      const newFlash = new Flash(this.cloud.x + 120, this.cloud.y); //+ 30, -270
       this.flashes.push(newFlash);
     }
 
     //flash1 and cloud1
     if (this.randomNumber > 0 && frameCount % 60 === 0) {
-      const newFlash = new Flash(this.cloud1.x - 60, this.cloud1.y - 150);
+      const newFlash = new Flash(this.cloud1.x + 40, this.cloud1.y + 150);
       this.flashes.push(newFlash);
     }
 
     //flash2 and cloud2
     if (this.randomNumber > 0 && frameCount % 45 === 0) {
-      const newFlash = new Flash(this.cloud2.x + 200, this.cloud2.y - 200);
+      const newFlash = new Flash(this.cloud2.x + 280, this.cloud2.y + 80);
       this.flashes.push(newFlash);
     }
 
