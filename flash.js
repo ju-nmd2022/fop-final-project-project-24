@@ -6,6 +6,7 @@ export class Flash {
     this.acceleration = 0.4;
     this.width = 31;
     this.height = 70;
+    this.flashCount = 0;
   }
 
   detectIntersection(characterCoordinates) {
@@ -17,14 +18,14 @@ export class Flash {
 
       //following 4 lines - chat GPT
       characterCoordinates.x < this.x + this.width &&
-      characterCoordinates.x + 45 > this.x && //40 je šířka characteru myslím
-      characterCoordinates.y < this.y + this.height &&
-      characterCoordinates.y + 145 > this.y //115 je výška characteru
-    ) {
-      return true;
-    }
-    return false;
+    characterCoordinates.x + 45 > this.x &&
+    characterCoordinates.y < this.y + this.height &&
+    characterCoordinates.y + 145 > this.y
+  ) {
+    return true;
   }
+  return false;
+}
 
   draw(x, y) {
     noStroke();
