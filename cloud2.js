@@ -7,6 +7,7 @@ export class Cloud2 {
     this.width = 140;
     this.height = 45;
     this.color = "#18D4EB";
+    this.hitValue = 0;
   }
 
   collisionInfo() {

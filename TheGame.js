@@ -1,9 +1,9 @@
-import { Cloud } from "./cloud";
-import { Cloud1 } from "./cloud1";
-import { Cloud2 } from "./cloud2";
-import { Character } from "./character";
-import { Bullet } from "./bullets";
-import { Flash } from "./flash";
+import { Cloud } from "./cloud.js";
+import { Cloud1 } from "./cloud1.js";
+import { Cloud2 } from "./cloud2.js";
+import { Character } from "./character.js";
+import { Bullet } from "./bullets.js";
+import { Flash } from "./flash.js";
 
 let gameIsOn = true;
 
@@ -30,15 +30,6 @@ export class Game {
   }
   changeToOriginalColor() {
     this.character.color = "#EDC9AE";
-  }
-  cloudChangeToOriginalColor() {
-    this.cloud.color = "#18D4EB";
-  }
-  cloud1ChangeToOriginalColor() {
-    this.cloud1.color = "#18D4EB";
-  }
-  cloud2ChangeToOriginalColor() {
-    this.cloud2.color = "#18D4EB";
   }
 
   //tady všechno co se hýbe
@@ -75,19 +66,19 @@ export class Game {
     //frameCount clears the canvas - chatGPT adviced that
     //flash and cloud
     if (this.randomNumber > 1 && frameCount % 30 === 0) {
-      const newFlash = new Flash(this.cloud.x + 30, this.cloud.y - 270);
+      const newFlash = new Flash(this.cloud.x + 120, this.cloud.y); //+ 30, -270
       this.flashes.push(newFlash);
     }
 
     //flash1 and cloud1
     if (this.randomNumber > 0 && frameCount % 60 === 0) {
-      const newFlash = new Flash(this.cloud1.x - 60, this.cloud1.y - 150);
+      const newFlash = new Flash(this.cloud1.x + 40, this.cloud1.y + 150);
       this.flashes.push(newFlash);
     }
 
     //flash2 and cloud2
     if (this.randomNumber > 0 && frameCount % 45 === 0) {
-      const newFlash = new Flash(this.cloud2.x + 200, this.cloud2.y - 200);
+      const newFlash = new Flash(this.cloud2.x + 280, this.cloud2.y + 80);
       this.flashes.push(newFlash);
     }
 
@@ -137,11 +128,38 @@ export class Game {
           this.cloud.collisionInfo()
         );
         if (cloudCollision === true) {
-          console.log("Cloud was hit!");
-          this.cloud.color = "#FF0000";
-          setTimeout(() => {
-            this.cloudChangeToOriginalColor();
-          }, 500);
+          this.cloud.hitValue += 1; //but 1 bullet actually adds 3, not 1
+          console.log(this.cloud.hitValue);
+        }
+        if (this.cloud.hitValue >= 3) {
+          this.cloud.color = "#18D4E5";
+        }
+        if (this.cloud.hitValue >= 6) {
+          this.cloud.color = "#18D1DF";
+        }
+        if (this.cloud.hitValue >= 9) {
+          this.cloud.color = "#18CED9";
+        }
+        if (this.cloud.hitValue === 12) {
+          this.cloud.color = "#18CAD2";
+        }
+        if (this.cloud.hitValue === 15) {
+          this.cloud.color = "#18C7CC";
+        }
+        if (this.cloud.hitValue === 18) {
+          this.cloud.color = "#18C4C6";
+        }
+        if (this.cloud.hitValue === 21) {
+          this.cloud.color = "#18C1C0";
+        }
+        if (this.cloud.hitValue === 24) {
+          this.cloud.color = "#18BDB9";
+        }
+        if (this.cloud.hitValue === 27) {
+          this.cloud.color = "#7080C1";
+        }
+        if (this.cloud.hitValue >= 30) {
+          this.cloud.color = "#100841";
         }
       }
     }
@@ -154,11 +172,37 @@ export class Game {
           this.cloud1.collisionInfo()
         );
         if (cloud1Collision === true) {
-          console.log("Cloud was hit!");
-          this.cloud1.color = "#FF0000";
-          setTimeout(() => {
-            this.cloud1ChangeToOriginalColor();
-          }, 500);
+          this.cloud1.hitValue += 1;
+        }
+        if (this.cloud1.hitValue >= 3) {
+          this.cloud1.color = "#18D4E5";
+        }
+        if (this.cloud1.hitValue >= 6) {
+          this.cloud1.color = "#18D1DF";
+        }
+        if (this.cloud1.hitValue >= 9) {
+          this.cloud1.color = "#18CED9";
+        }
+        if (this.cloud1.hitValue === 12) {
+          this.cloud1.color = "#18CAD2";
+        }
+        if (this.cloud1.hitValue === 15) {
+          this.cloud1.color = "#18C7CC";
+        }
+        if (this.cloud1.hitValue === 18) {
+          this.cloud1.color = "#18C4C6";
+        }
+        if (this.cloud1.hitValue === 21) {
+          this.cloud1.color = "#18C1C0";
+        }
+        if (this.cloud1.hitValue === 24) {
+          this.cloud1.color = "#18BDB9";
+        }
+        if (this.cloud1.hitValue === 27) {
+          this.cloud1.color = "#7080C1";
+        }
+        if (this.cloud1.hitValue >= 30) {
+          this.cloud1.color = "#100841";
         }
       }
     }
@@ -171,21 +215,56 @@ export class Game {
           this.cloud2.collisionInfo()
         );
         if (cloud2Collision === true) {
-          console.log("Cloud was hit!");
-          this.cloud2.color = "#FF0000";
-          setTimeout(() => {
-            this.cloud2ChangeToOriginalColor();
-          }, 500);
+          this.cloud2.hitValue += 1;
+        }
+        if (this.cloud2.hitValue >= 3) {
+          this.cloud2.color = "#18D4E5";
+        }
+        if (this.cloud2.hitValue >= 6) {
+          this.cloud2.color = "#18D1DF";
+        }
+        if (this.cloud2.hitValue >= 9) {
+          this.cloud2.color = "#18CED9";
+        }
+        if (this.cloud2.hitValue === 12) {
+          this.cloud2.color = "#18CAD2";
+        }
+        if (this.cloud2.hitValue === 15) {
+          this.cloud2.color = "#18C7CC";
+        }
+        if (this.cloud2.hitValue === 18) {
+          this.cloud2.color = "#18C4C6";
+        }
+        if (this.cloud2.hitValue === 21) {
+          this.cloud2.color = "#18C1C0";
+        }
+        if (this.cloud2.hitValue === 24) {
+          this.cloud2.color = "#18BDB9";
+        }
+        if (this.cloud2.hitValue === 27) {
+          this.cloud2.color = "#7080C1";
+        }
+        if (this.cloud2.hitValue >= 30) {
+          this.cloud2.color = "#100841";
         }
       }
     }
 
+    //conditions to end the game
     if (
-      this.character.x <= 200 || //má být 200
-      this.character.x >= 800 ||
+      this.cloud.hitValue >= 30 &&
+      this.cloud1.hitValue >= 30 &&
+      this.cloud2.hitValue >= 30
+    ) {
+      this.endGame = true;
+    }
+
+    if (
+      // this.character.x <= 200 || //má být 200
+      // this.character.x >= 800 ||
       this.endGame === true
     ) {
-      console.log("gameOver");
+      console.log("Game over");
     }
   }
 }
