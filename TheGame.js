@@ -18,15 +18,17 @@ export class Game {
     this.character = new Character(450, 430); //450, 430
     // //flash for cloud
     // this.flash = new Flash(this.cloud.x, this.cloud.y);
-    this.bg = loadImage("images/gameBackground.png");
+    this.bg = loadImage("images/gameBackground2.png");
     this.randomNumber = Math.floor(Math.random() * 4); //between 0 and 3
     this.endGame = false;
+    this.flashCount = 0; // Counter to keep track of flash hits
   }
 
   setUp() {
     this.flashes = [];
     this.bullets = [];
     this.endGame = false;
+    this.flashCount = 0; // Reset the flash hit counter
   }
   changeToOriginalColor() {
     this.character.color = "#EDC9AE";
@@ -37,15 +39,18 @@ export class Game {
     background(this.bg);
 
     // moving the character
-    if (keyIsDown(39)) {
-      this.character.x = this.character.x + this.character.speed;
-      this.character.toRight(this.character.x, this.character.y);
-    } else if (keyIsDown(37)) {
-      this.character.x = this.character.x - this.character.speed;
-      this.character.toLeft(this.character.x, this.character.y);
-    } else {
-      this.character.draw(this.character.x, this.character.y);
+    if (this.character.x < 720 && this.character.x > 80) {
+      if (keyIsDown(39)) {
+        this.character.x = this.character.x + this.character.speed;
+        this.character.toRight(this.character.x, this.character.y);
+      } else if (keyIsDown(37)) {
+        this.character.x = this.character.x - this.character.speed;
+        this.character.toLeft(this.character.x, this.character.y);
+      } else {
+          this.character.draw(this.character.x, this.character.y);
+        }
     }
+   
 
     // bullets
     for (let i = 0; i < this.bullets.length; i++) {
@@ -102,19 +107,20 @@ export class Game {
     this.cloud2.draw();
 
     for (let i = 0; i < this.flashes.length; i++) {
-      //detecting collisions
-      if (typeof this.flashes[i].detectIntersection == "function") {
-        //here goes the evaluated true/false from detectIntersection (each of the objects/obstacles has it implemented in their codes)
+      if (typeof this.flashes[i].detectIntersection === "function") {
         let objectCollision = this.flashes[i].detectIntersection(
           this.character.collisionInfo()
         );
         if (objectCollision === true) {
           this.character.color = "#FF0000";
-          //chat GPT helped edit setTimeout and added the arrow function -  to retain the proper 'this' context
           setTimeout(() => {
             this.changeToOriginalColor();
           }, 500);
-          // this.endGame = true;
+          this.flashCount++; // Increase the flash hit count
+          if (this.flashCount === 30) {
+            this.endGame = true; // Set the endGame flag to true
+            console.log("Game over");
+          }
         }
       }
     }
@@ -255,16 +261,24 @@ export class Game {
       this.cloud.hitValue >= 30 &&
       this.cloud1.hitValue >= 30 &&
       this.cloud2.hitValue >= 30
-    ) {
+    ) { 
       this.endGame = true;
     }
 
-    if (
-      // this.character.x <= 200 || //má být 200
-      // this.character.x >= 800 ||
-      this.endGame === true
-    ) {
+   
+    if (this.character.x <= 90 || this.character.x >= 720) {
+      this.character.y += 10; // Increase the character's y coordinate to make it fall
+      this.character.gameOver();
+      this.character.color = "#FF0000";
+      this.endGame = true; // Set the endGame flag to true or handle the game over logic 
+      console.log("Game over");
+    }
+  
+    // Check if the character has fallen off the screen
+    if (this.character.y > height) {
+      this.endGame = true; // Set the endGame flag to true or handle the game over logic 
       console.log("Game over");
     }
   }
 }
+

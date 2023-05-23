@@ -1,4 +1,4 @@
-import { Game } from "./TheGame.js";
+import { Game } from "./Thegame.js";
 
 let game;
 
@@ -15,8 +15,8 @@ function draw() {
   //   return;
   //   }
   clear();
-  //   //   drawObstacleOne(180, 0)
+  //   //   drawObstacleOne(180, 0) 
   gameRunning = game.run();
 }
 
-window.draw = draw;
+window.draw = draw;  

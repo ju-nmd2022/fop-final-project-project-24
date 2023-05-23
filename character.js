@@ -6,7 +6,7 @@ export class Character {
     this.color = "#EDC9AE";
     this.height = 145;
     this.width = 45;
-    this.lives = 3;
+    this.characterHits = 3;
   }
 
   collisionInfo() {
@@ -31,8 +31,8 @@ export class Character {
     rect(this.x + 70, this.y + 156, 15, 35);
     rect(this.x + 101, this.y + 156, 15, 35);
 
-    rect(this.x + 83, this.y + 185, 10, 50);
-    rect(this.x + 93, this.y + 185, 10, 50);
+    rect(this.x + 83, this.y + 185, 10, 40);
+    rect(this.x + 93, this.y + 185, 10, 40);
     fill("#1f456e");
     ellipse(this.x + 92, this.y + 105, 20, 25);
     fill(255, 255, 255);
@@ -135,4 +135,34 @@ export class Character {
     rect(this.x + 40, this.y + 130, 16, 7);
     rect(this.x + 50, this.y + 130, 7, 15);
   }
+  gameOver(){
+    fill(this.color);
+    noStroke();
+    ellipse(this.x + 92, this.y + 105, 30, 42);
+
+    rect(this.x + 89, this.y + 115, 8, 10);
+    rect(this.x + 75, this.y + 125, 37, 60);
+
+    
+    rect(this.x + 64, this.y + 90, 15, 55);
+    rect(this.x + 107, this.y + 90, 15, 55);
+
+    rect(this.x + 75, this.y + 185, 22, 50);
+    rect(this.x + 97, this.y + 185, 15, 50);
+    
+    stroke(0,0,0);
+    strokeWeight(3);
+    line(this.x+84, this.y+100, this.x+87, this.y+104);
+    line(this.x+84,this.y+105, this.x+87, this.y+100);
+    line(this.x+94, this.y+100, this.x+98, this.y+104);
+    line(this.x+94, this.y+105, this.x+98, this.y+100);
+    ellipse(this.x+91, this.y+110, 5,5);
+
+
+    fill(0, 0, 0);
+    noStroke();
+    rect(this.x + 67, this.y + 190, 12, 7);
+    rect(this.x + 67, this.y + 190, 7, 15);
+  }
 }
+

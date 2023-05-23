@@ -1,0 +1,16 @@
+/*The following 11 lines of code was adapted from https://github.com/processing/p5.js/wiki/Positioning-your-canvas?fbclid=IwAR0aWTYouGoGtxDgqcj2TEJgoM5OG_1-xDInxhoRPHZdsCOVbTbWlNqjRVk */
+html, body {
+    height: 100%;
+    background-color:white;
+  }
+  
+  body {
+    margin: 0;
+    display: flex;
+  
+    /* This centers our sketch horizontally. */
+    justify-content: center;
+  
+    /* This centers our sketch vertically. */
+    align-items: center;
+  } 
