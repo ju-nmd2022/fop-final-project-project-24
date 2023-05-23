@@ -18,5 +18,5 @@ function draw() {
   //   //   drawObstacleOne(180, 0) 
   gameRunning = game.run();
 }
-  
+
 window.draw = draw;  

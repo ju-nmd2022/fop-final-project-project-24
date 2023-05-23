@@ -5,6 +5,8 @@ import { Character } from "./character.js";
 import { Bullet } from "./bullets.js";
 import { Flash } from "./flash.js";
 
+let gameIsOn = true;
+
 export class Game {
   constructor() {
     this.flashes = [];
