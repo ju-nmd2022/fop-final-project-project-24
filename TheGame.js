@@ -18,7 +18,6 @@ export class Game {
     this.character = new Character(450, 430); //450, 430
     // //flash for cloud
     // this.flash = new Flash(this.cloud.x, this.cloud.y);
-
     this.bg = loadImage("images/gameBackground.png");
     this.randomNumber = Math.floor(Math.random() * 4); //between 0 and 3
     this.endGame = false;
@@ -31,6 +30,15 @@ export class Game {
   }
   changeToOriginalColor() {
     this.character.color = "#EDC9AE";
+  }
+  cloudChangeToOriginalColor() {
+    this.cloud.color = "#18D4EB";
+  }
+  cloud1ChangeToOriginalColor() {
+    this.cloud1.color = "#18D4EB";
+  }
+  cloud2ChangeToOriginalColor() {
+    this.cloud2.color = "#18D4EB";
   }
 
   //tady všechno co se hýbe
@@ -116,6 +124,58 @@ export class Game {
             this.changeToOriginalColor();
           }, 500);
           // this.endGame = true;
+        }
+      }
+    }
+
+    //mrak je jako character
+    //cloud
+    for (let i = 0; i < this.bullets.length; i++) {
+      //detecting collisions
+      if (typeof this.bullets[i].detectIntersection == "function") {
+        let cloudCollision = this.bullets[i].detectIntersection(
+          this.cloud.collisionInfo()
+        );
+        if (cloudCollision === true) {
+          console.log("Cloud was hit!");
+          this.cloud.color = "#FF0000";
+          setTimeout(() => {
+            this.cloudChangeToOriginalColor();
+          }, 500);
+        }
+      }
+    }
+
+    //cloud1
+    for (let i = 0; i < this.bullets.length; i++) {
+      //detecting collisions
+      if (typeof this.bullets[i].detectIntersection == "function") {
+        let cloud1Collision = this.bullets[i].detectIntersection(
+          this.cloud1.collisionInfo()
+        );
+        if (cloud1Collision === true) {
+          console.log("Cloud was hit!");
+          this.cloud1.color = "#FF0000";
+          setTimeout(() => {
+            this.cloud1ChangeToOriginalColor();
+          }, 500);
+        }
+      }
+    }
+
+    //cloud2
+    for (let i = 0; i < this.bullets.length; i++) {
+      //detecting collisions
+      if (typeof this.bullets[i].detectIntersection == "function") {
+        let cloud2Collision = this.bullets[i].detectIntersection(
+          this.cloud2.collisionInfo()
+        );
+        if (cloud2Collision === true) {
+          console.log("Cloud was hit!");
+          this.cloud2.color = "#FF0000";
+          setTimeout(() => {
+            this.cloud2ChangeToOriginalColor();
+          }, 500);
         }
       }
     }
