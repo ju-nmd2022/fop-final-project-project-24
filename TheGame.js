@@ -23,6 +23,9 @@ export class Game {
     this.endGame = false;
     this.flashCount = 0; // Counter to keep track of flash hits
     this.win = false;
+    this.flashCanKeepFalling = true;
+    this.flash1CanKeepFalling = true;
+    this.flash2CanKeepFalling = true;
   }
 
   setUp() {
@@ -52,37 +55,34 @@ export class Game {
       }
     }
 
-    // bullets
-    for (let i = 0; i < this.bullets.length; i++) {
-      this.bullets[i].update();
-      this.bullets[i].show();
-    }
-
-    if (keyIsDown(32) && !this.spacePressed) {
-      this.bullets.push(
-        new Bullet(this.character.x + 95, this.character.y + 120)
-      );
-      this.spacePressed = true;
-    } else if (!keyIsDown(32)) {
-      this.spacePressed = false;
-    }
-
     //flashes
     //frameCount clears the canvas - chatGPT adviced that
     //flash and cloud
-    if (this.randomNumber > 1 && frameCount % 30 === 0) {
+    if (
+      this.randomNumber > 1 &&
+      frameCount % 30 === 0 &&
+      this.flashCanKeepFalling === true
+    ) {
       const newFlash = new Flash(this.cloud.x + 120, this.cloud.y); //+ 30, -270
       this.flashes.push(newFlash);
     }
 
     //flash1 and cloud1
-    if (this.randomNumber > 0 && frameCount % 60 === 0) {
+    if (
+      this.randomNumber > 0 &&
+      frameCount % 60 === 0 &&
+      this.flash1CanKeepFalling === true
+    ) {
       const newFlash = new Flash(this.cloud1.x + 40, this.cloud1.y + 150);
       this.flashes.push(newFlash);
     }
 
     //flash2 and cloud2
-    if (this.randomNumber > 0 && frameCount % 45 === 0) {
+    if (
+      this.randomNumber > 0 &&
+      frameCount % 45 === 0 &&
+      this.flash2CanKeepFalling === true
+    ) {
       const newFlash = new Flash(this.cloud2.x + 280, this.cloud2.y + 80);
       this.flashes.push(newFlash);
     }
@@ -162,6 +162,7 @@ export class Game {
         }
         if (this.cloud.hitValue >= 30) {
           this.cloud.color = "#100841";
+          this.flashCanKeepFalling = false;
         }
       }
     }
@@ -205,6 +206,7 @@ export class Game {
         }
         if (this.cloud1.hitValue >= 30) {
           this.cloud1.color = "#100841";
+          this.flash1CanKeepFalling = false;
         }
       }
     }
@@ -248,8 +250,24 @@ export class Game {
         }
         if (this.cloud2.hitValue >= 30) {
           this.cloud2.color = "#100841";
+          this.flash2CanKeepFalling = false;
         }
       }
+    }
+
+    // bullets
+    for (let i = 0; i < this.bullets.length; i++) {
+      this.bullets[i].update();
+      this.bullets[i].show();
+    }
+
+    if (keyIsDown(32) && !this.spacePressed) {
+      this.bullets.push(
+        new Bullet(this.character.x + 95, this.character.y + 120)
+      );
+      this.spacePressed = true;
+    } else if (!keyIsDown(32)) {
+      this.spacePressed = false;
     }
 
     //conditions to win the game
