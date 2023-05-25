@@ -8,7 +8,7 @@ let imgLost;
 
 function preload() {
   imgStart = loadImage("images/startingScreen.png");
-  imgWon = loadImage("images/victoryscreen.png");
+  imgWon = loadImage("images/victoryScreen.png");
   imgLost = loadImage("images/gameOverScreen.png");
 }
 
