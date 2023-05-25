@@ -14,3 +14,11 @@ html, body {
     /* This centers our sketch vertically. */
     align-items: center;
   } 
+
+  #hearts-container{
+    position: absolute; top: 2vw; left: 70vw;
+  }
+
+  #hearts-container1{
+    position: absolute; top: 2vw; left: 70vw;
+  }

@@ -3,14 +3,18 @@ import { Game } from "./TheGame.js";
 let game;
 let screen = 0;
 
+
 function setup() {
   createCanvas(1000, 700);
   game = new Game();
   frameRate(30);
 }
+
 window.setup = setup;
 let gameRunning = true;
 let hasWon = false;
+
+
 
 function draw() {
   clear();

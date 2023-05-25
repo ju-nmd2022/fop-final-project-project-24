@@ -6,7 +6,7 @@ export class Flash {
     this.acceleration = 0.4;
     this.width = 31;
     this.height = 70;
-    this.flashCount = 0;
+    this.flashHit = false;
   }
 
   detectIntersection(characterCoordinates) {

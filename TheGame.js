@@ -5,7 +5,7 @@ import { Character } from "./character.js";
 import { Bullet } from "./bullets.js";
 import { Flash } from "./flash.js";
 
-let gameIsOn = true;
+const heartImages = document.getElementsByClassName('heart');
 
 export class Game {
   constructor() {
@@ -18,12 +18,14 @@ export class Game {
     this.character = new Character(450, 430); //450, 430
     // //flash for cloud
     // this.flash = new Flash(this.cloud.x, this.cloud.y);
-    this.bg = loadImage("images/gameBackground2.png");
+    this.bg = loadImage("images/gameBackground.png");
     this.randomNumber = Math.floor(Math.random() * 4); //between 0 and 3
     this.endGame = false;
     this.flashCount = 0; // Counter to keep track of flash hits
     this.win = false;
-  }
+    this.heartCount = 3;
+    this.flashHit = 3;
+}
 
   setUp() {
     this.flashes = [];
@@ -111,15 +113,37 @@ export class Game {
         let objectCollision = this.flashes[i].detectIntersection(
           this.character.collisionInfo()
         );
-        if (objectCollision === true) {
+        if (objectCollision === true &&  this.flashes[i].flashHit === false) {
+          this.flashes[i].flashHit = true;
           this.character.color = "#FF0000";
           setTimeout(() => {
             this.changeToOriginalColor();
           }, 500);
           this.flashCount++; // Increase the flash hit count
+          if (this.flashCount === 1) {
+            this.heartCount -= 3;
+            heartImages[0].src = "images/emptyheart1.png";
+            heartImages[0].style.width = "35px";
+            console.log("au");
+          } else if (this.flashCount === 2) {
+            this.heartCount -= 2;
+            heartImages[1].src = "images/emptyheart1.png" ;
+            heartImages[1].style.width = "35px";
+            console.log("ouch");
+          } else if (this.flashCount === 3) {
+           console.log("GAME OVER");
+           heartImages[2].src = "images/emptyheart1.png";
+           heartImages[2].style.width = "35px";
+            this.endGame = true;
+            return {
+              endGame: true,
+              win: true,
+            };
+          }
         }
       }
     }
+  
 
     //mrak je jako character
     //cloud
@@ -165,6 +189,8 @@ export class Game {
         }
       }
     }
+
+    
 
     //cloud1
     for (let i = 0; i < this.bullets.length; i++) {
