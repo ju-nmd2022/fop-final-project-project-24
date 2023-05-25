@@ -1,0 +1,24 @@
+/*The following 11 lines of code was adapted from https://github.com/processing/p5.js/wiki/Positioning-your-canvas?fbclid=IwAR0aWTYouGoGtxDgqcj2TEJgoM5OG_1-xDInxhoRPHZdsCOVbTbWlNqjRVk */
+html, body {
+    height: 100%;
+    background-color:#140E41;
+  }
+  
+  body {
+    margin: 0;
+    display: flex;
+  
+    /* This centers our sketch horizontally. */
+    justify-content: center;
+  
+    /* This centers our sketch vertically. */
+    align-items: center;
+  } 
+
+  #hearts-container{
+    position: absolute; top: 2vw; left: 70vw;
+  }
+
+  #hearts-container1{
+    position: absolute; top: 2vw; left: 70vw;
+  }
