@@ -2,6 +2,14 @@ import { Game } from "./TheGame.js";
 
 let game;
 let screen = 0;
+let imgStart;
+let imgWon;
+let imgLost;
+function preload() {
+  imgStart = loadImage("images/startingScreen.png");
+  imgWon = loadImage("images/victoryScreen.png");
+  imgLost = loadImage("images/gameOverScreen.png");
+}
 
 
 function setup() {
@@ -20,7 +28,7 @@ function draw() {
   clear();
   switch (screen) {
     case 0:
-      loadImage("images/startingScreen.png");
+      image(imgStart, 0, 0);
       if (mouseIsPressed || keyIsDown(32) || keyIsDown(13)) {
         screen = 1;
       }
@@ -36,10 +44,10 @@ function draw() {
       break;
     case 2:
       if (hasWon === true) {
-        loadImage("images/victoryScreen.png");
+        image(imgWon, 0, 0);
       }
       if (hasWon === false) {
-        loadImage("images/gameOverScreen.png");
+        image(imgLost, 0, 0);
       }
       break;
   }
