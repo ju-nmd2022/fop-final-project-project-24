@@ -328,6 +328,15 @@ export class Game {
     ) {
       if (this.character.y < 600) {
         this.character.y += 10; // Increase the character's y coordinate to make it fall
+        this.heartCount -= 3;
+            heartImages[0].src = "images/emptyheart1.png";
+            heartImages[0].style.width = "35px";
+            this.heartCount -= 2;
+            heartImages[1].src = "images/emptyheart1.png" ;
+            heartImages[1].style.width = "35px";
+            this.heartCount -= 3;
+            heartImages[2].src = "images/emptyheart1.png" ;
+            heartImages[2].style.width = "35px";
         this.character.gameOver();
         this.character.color = "#FF0000";
       } else {
@@ -337,10 +346,8 @@ export class Game {
         };
       }
     }
-
     return {
       endGame: false,
     };
   }
-  
 }
