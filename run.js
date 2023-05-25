@@ -5,24 +5,40 @@ let screen = 0;
 let imgStart;
 let imgWon;
 let imgLost;
+
 function preload() {
   imgStart = loadImage("images/startingScreen.png");
-  imgWon = loadImage("images/victoryScreen.png");
+  imgWon = loadImage("images/victoryscreen.png");
   imgLost = loadImage("images/gameOverScreen.png");
 }
-
 
 function setup() {
   createCanvas(1000, 700);
   game = new Game();
   frameRate(30);
+
+  // Add an event listener to the canvas element
+  canvas.addEventListener("click", handleCanvasClick);
 }
 
 window.setup = setup;
 let gameRunning = true;
 let hasWon = false;
 
+function handleCanvasClick() {
+  if (screen === 0) {
+    screen = 1;
+  } else if (screen === 2) {
+    resetGame();
+    screen = 1; // Return to game screen instead of starting screen
+  }
+}
 
+function resetGame() {
+  game = new Game();
+  gameRunning = true;
+  hasWon = false;
+}
 
 function draw() {
   clear();
@@ -40,7 +56,6 @@ function draw() {
         screen = 2;
         hasWon = gameRunning.win;
       }
-
       break;
     case 2:
       if (hasWon === true) {
@@ -51,11 +66,7 @@ function draw() {
       }
       break;
   }
-  // if (gameRunning === false) {
-  //   return;
-  //   }
-
-  //   //   drawObstacleOne(180, 0)
 }
 
 window.draw = draw;
+window.preload = preload;
