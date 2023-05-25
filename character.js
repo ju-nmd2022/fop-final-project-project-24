@@ -31,8 +31,8 @@ export class Character {
     rect(this.x + 70, this.y + 156, 15, 35);
     rect(this.x + 101, this.y + 156, 15, 35);
 
-    rect(this.x + 83, this.y + 185, 10, 40);
-    rect(this.x + 93, this.y + 185, 10, 40);
+    rect(this.x + 83, this.y + 185, 10, 34);
+    rect(this.x + 93, this.y + 185, 10, 34);
     fill("#1f456e");
     ellipse(this.x + 92, this.y + 105, 20, 25);
     fill(255, 255, 255);
