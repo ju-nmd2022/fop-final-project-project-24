@@ -22,6 +22,7 @@ export class Game {
     this.randomNumber = Math.floor(Math.random() * 4); //between 0 and 3
     this.endGame = false;
     this.flashCount = 0; // Counter to keep track of flash hits
+    this.win = false;
   }
 
   setUp() {
@@ -47,10 +48,9 @@ export class Game {
         this.character.x = this.character.x - this.character.speed;
         this.character.toLeft(this.character.x, this.character.y);
       } else {
-          this.character.draw(this.character.x, this.character.y);
-        }
+        this.character.draw(this.character.x, this.character.y);
+      }
     }
-   
 
     // bullets
     for (let i = 0; i < this.bullets.length; i++) {
@@ -117,10 +117,6 @@ export class Game {
             this.changeToOriginalColor();
           }, 500);
           this.flashCount++; // Increase the flash hit count
-          if (this.flashCount === 30) {
-            this.endGame = true; // Set the endGame flag to true
-            console.log("Game over");
-          }
         }
       }
     }
@@ -256,29 +252,38 @@ export class Game {
       }
     }
 
-    //conditions to end the game
+    //conditions to win the game
     if (
       this.cloud.hitValue >= 30 &&
       this.cloud1.hitValue >= 30 &&
       this.cloud2.hitValue >= 30
-    ) { 
-      this.endGame = true;
+    ) {
+      return {
+        endGame: true,
+        win: true,
+      };
     }
 
-   
-    if (this.character.x <= 90 || this.character.x >= 720) {
-      this.character.y += 10; // Increase the character's y coordinate to make it fall
-      this.character.gameOver();
-      this.character.color = "#FF0000";
-      this.endGame = true; // Set the endGame flag to true or handle the game over logic 
-      console.log("Game over");
+    //conditions to loose the game
+    if (
+      this.character.x <= 90 ||
+      this.character.x >= 720 ||
+      this.flashCount === 30
+    ) {
+      if (this.character.y < 600) {
+        this.character.y += 10; // Increase the character's y coordinate to make it fall
+        this.character.gameOver();
+        this.character.color = "#FF0000";
+      } else {
+        return {
+          endGame: true,
+          win: false,
+        };
+      }
     }
-  
-    // Check if the character has fallen off the screen
-    if (this.character.y > height) {
-      this.endGame = true; // Set the endGame flag to true or handle the game over logic 
-      console.log("Game over");
-    }
+
+    return {
+      endGame: false,
+    };
   }
 }
-
