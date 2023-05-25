@@ -16,8 +16,6 @@ export class Game {
     this.cloud1 = new Cloud1(0, 0); //100, 0
     this.cloud2 = new Cloud2(0, 0); //250, 0
     this.character = new Character(450, 430); //450, 430
-    // //flash for cloud
-    // this.flash = new Flash(this.cloud.x, this.cloud.y);
     this.bg = loadImage("images/gameBackground.png");
     this.randomNumber = Math.floor(Math.random() * 4); //between 0 and 3
     this.endGame = false;
@@ -37,12 +35,23 @@ export class Game {
     this.bullets = [];
     this.endGame = false;
     this.flashCount = 0; // Reset the flash hit counter
+    this.resetHearts();
   }
   changeToOriginalColor() {
     this.character.color = "#EDC9AE";
   }
 
-  //tady všechno co se hýbe
+ // folowwong lines chatGPT 
+  resetHearts() {
+    this.heartCount = 3; // Reset the heart count to its initial value
+  
+    // Update the heart images on the screen to show full hearts
+    for (let i = 0; i < heartImages.length; i++) {
+      heartImages[i].src = "images/heart.png";
+      heartImages[i].style.width = "50px";
+    }
+  }
+
   run() {
     background(this.bg);
 
@@ -110,6 +119,8 @@ export class Game {
     this.cloud1.draw();
     this.cloud2.draw();
 
+    
+// following lines were done with a help of Garrit
     for (let i = 0; i < this.flashes.length; i++) {
       if (typeof this.flashes[i].detectIntersection === "function") {
         let objectCollision = this.flashes[i].detectIntersection(
@@ -139,7 +150,7 @@ export class Game {
             this.endGame = true;
             return {
               endGame: true,
-              win: true,
+              win: false,
             };
           }
         }
@@ -147,7 +158,6 @@ export class Game {
     }
   
 
-    //mrak je jako character
     //cloud
     for (let i = 0; i < this.bullets.length; i++) {
       //detecting collisions
@@ -163,25 +173,25 @@ export class Game {
           this.cloud.color = "#18D4E5";
         }
         if (this.cloud.hitValue >= 6) {
-          this.cloud.color = "#18D1DF";
+          this.cloud.color = "#dddddd";
         }
         if (this.cloud.hitValue >= 9) {
           this.cloud.color = "#18CED9";
         }
         if (this.cloud.hitValue === 12) {
-          this.cloud.color = "#18CAD2";
+          this.cloud.color = "#dddddd";
         }
         if (this.cloud.hitValue === 15) {
           this.cloud.color = "#18C7CC";
         }
         if (this.cloud.hitValue === 18) {
-          this.cloud.color = "#18C4C6";
+          this.cloud.color = "#dddddd";
         }
         if (this.cloud.hitValue === 21) {
           this.cloud.color = "#18C1C0";
         }
         if (this.cloud.hitValue === 24) {
-          this.cloud.color = "#18BDB9";
+          this.cloud.color = "#dddddd";
         }
         if (this.cloud.hitValue === 27) {
           this.cloud.color = "#7080C1";
@@ -209,25 +219,25 @@ export class Game {
           this.cloud1.color = "#18D4E5";
         }
         if (this.cloud1.hitValue >= 6) {
-          this.cloud1.color = "#18D1DF";
+          this.cloud1.color = "#dddddd";
         }
         if (this.cloud1.hitValue >= 9) {
           this.cloud1.color = "#18CED9";
         }
         if (this.cloud1.hitValue === 12) {
-          this.cloud1.color = "#18CAD2";
+          this.cloud1.color = "#dddddd";
         }
         if (this.cloud1.hitValue === 15) {
           this.cloud1.color = "#18C7CC";
         }
         if (this.cloud1.hitValue === 18) {
-          this.cloud1.color = "#18C4C6";
+          this.cloud1.color = "#dddddd";
         }
         if (this.cloud1.hitValue === 21) {
           this.cloud1.color = "#18C1C0";
         }
         if (this.cloud1.hitValue === 24) {
-          this.cloud1.color = "#18BDB9";
+          this.cloud1.color = "#dddddd";
         }
         if (this.cloud1.hitValue === 27) {
           this.cloud1.color = "#7080C1";
@@ -253,25 +263,25 @@ export class Game {
           this.cloud2.color = "#18D4E5";
         }
         if (this.cloud2.hitValue >= 6) {
-          this.cloud2.color = "#18D1DF";
+          this.cloud2.color = "#dddddd";
         }
         if (this.cloud2.hitValue >= 9) {
           this.cloud2.color = "#18CED9";
         }
         if (this.cloud2.hitValue === 12) {
-          this.cloud2.color = "#18CAD2";
+          this.cloud2.color = "#dddddd";
         }
         if (this.cloud2.hitValue === 15) {
           this.cloud2.color = "#18C7CC";
         }
         if (this.cloud2.hitValue === 18) {
-          this.cloud2.color = "#18C4C6";
+          this.cloud2.color = "#dddddd";
         }
         if (this.cloud2.hitValue === 21) {
           this.cloud2.color = "#18C1C0";
         }
         if (this.cloud2.hitValue === 24) {
-          this.cloud2.color = "#18BDB9";
+          this.cloud2.color = "#dddddd";
         }
         if (this.cloud2.hitValue === 27) {
           this.cloud2.color = "#7080C1";
@@ -283,7 +293,7 @@ export class Game {
       }
     }
 
-    // bullets
+    // following 12 lines done with the help of chatGPT
     for (let i = 0; i < this.bullets.length; i++) {
       this.bullets[i].update();
       this.bullets[i].show();
@@ -332,4 +342,5 @@ export class Game {
       endGame: false,
     };
   }
+  
 }
