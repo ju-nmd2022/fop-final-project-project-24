@@ -55,21 +55,6 @@ export class Game {
       }
     }
 
-    // bullets
-    for (let i = 0; i < this.bullets.length; i++) {
-      this.bullets[i].update();
-      this.bullets[i].show();
-    }
-
-    if (keyIsDown(32) && !this.spacePressed) {
-      this.bullets.push(
-        new Bullet(this.character.x + 95, this.character.y + 120)
-      );
-      this.spacePressed = true;
-    } else if (!keyIsDown(32)) {
-      this.spacePressed = false;
-    }
-
     //flashes
     //frameCount clears the canvas - chatGPT adviced that
     //flash and cloud
@@ -268,6 +253,21 @@ export class Game {
           this.flash2CanKeepFalling = false;
         }
       }
+    }
+
+    // bullets
+    for (let i = 0; i < this.bullets.length; i++) {
+      this.bullets[i].update();
+      this.bullets[i].show();
+    }
+
+    if (keyIsDown(32) && !this.spacePressed) {
+      this.bullets.push(
+        new Bullet(this.character.x + 95, this.character.y + 120)
+      );
+      this.spacePressed = true;
+    } else if (!keyIsDown(32)) {
+      this.spacePressed = false;
     }
 
     //conditions to win the game
